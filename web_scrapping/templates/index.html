@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Web Scraper for Contact Info</h1>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Enter institute or business name" required>
+        <button type="submit">Find and Scrape</button>
+    </form>
+
+    {% if scraped_data %}
+    <div class="results">
+        <h2>Scraped Data:</h2>
+        <p><strong>Contact Info:</strong> {{ scraped_data.contact_info }}</p>
+        <p><strong>Location:</strong> {{ scraped_data.location }}</p>
+        <p><strong>Major Role:</strong> {{ scraped_data.role }}</p>
+        <p><strong>Time Taken:</strong> {{ scraped_data.time_taken }}</p>
+        {% if scraped_data.error %}
+        <p class="error">{{ scraped_data.error }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
